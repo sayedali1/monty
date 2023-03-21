@@ -9,20 +9,24 @@ void check_begin_space(char **line)
 {
 	char *newline = NULL;
 	unsigned int spaces = 0, i;
-	
+
 	newline = malloc(sizeof(char) * strlen(*line));
 	strcpy(newline, *line);
 
-	for (i = 0; newline[i] == ' '; i++);
-	
+	for (i = 0; newline[i] == ' '; i++)
+		;
+
 	spaces = strlen(newline) - i;
 	*line = malloc(sizeof(char) * (spaces + 1));
-	 if(*line == NULL)
+	if (*line == NULL)
+		_error(3, 0, NULL);
+	if (*line == NULL)
 		return;
 	strcpy(*line, &newline[i]);
-	
+
 	free(newline);
 }
+
 /**
  * get_argv - fun that splite string with a given seprator
  * @line: pointer to string we want to splite
@@ -35,28 +39,21 @@ char **get_argv(char *line, char *seprator)
 	char **strings = NULL;
 	int lines = 0, i;
 	/* check for spaces in the begining of a line */
-    
 	check_begin_space(&line);
-    cpline = malloc(strlen(line)+1);
-    if (cpline == NULL)
-        _error(3, 0, NULL);
-    strcpy(cpline, line);
-   
-	/* calc how many strings to allcate it  */
+	cpline = malloc(strlen(line) + 1);
+	if (cpline == NULL)
+		_error(3, 0, NULL);
+	strcpy(cpline, line); /* calc how many strings to allcate it  */
 	token = strtok(cpline, seprator);
-
 	while (token != NULL)
 	{
 		lines++;
 		token = strtok(NULL, seprator);
 	}
-
 	strings = malloc(sizeof(char *) * (lines + 1));
 	if (strings == NULL)
 		_error(3, 0, NULL);
-
-	/* splite the line into strings */
-	token = strtok(line, seprator);
+	token = strtok(line, seprator); /* splite the line into strings */
 	i = 0;
 	while (token != NULL)
 	{	/* allocate memory for each string */
