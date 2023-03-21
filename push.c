@@ -25,7 +25,6 @@ int digits_only(const char *s)
 	}
 	return (1);
 }
-
 /**
  * push - fun that push int to the stack
  * @argv: str of argv

@@ -1,6 +1,6 @@
 #include "monty.h"
 
-
+int top = -1;
 /**
  * main - program for monty opcode
  * @ac: num of arguments
@@ -33,7 +33,7 @@ int main(int ac, char **av)
 				line[strlen(line) - 1] = '\0';
 
 			argv = get_argv(line, " "); /* get arguments of each line */
-			opcode(&stack, argv, line_number);
+			exe_opcode(&stack, argv, line_number);
 		}
 		free(line), free(argv);
 		fclose(fd);
