@@ -61,7 +61,7 @@ void swap(stack_t **h, unsigned int line_number)
 {
 	stack_t *nxtNode;
 
-	if (1)
+	if (stack_len(*h) <= 1)
 		_error(5, line_number, NULL);
 
 	nxtNode = (*h)->next;
@@ -81,9 +81,13 @@ void add(stack_t **h, unsigned int line_number)
 {
 	stack_t *nxtNode;
 
-	/* if (top < 1)
-		_error(6, line_number, NULL); */
-	nxtNode = (*h)->next;
-	nxtNode->n += (*h)->n;
-	pop(h, line_number);
+	if (stack_len(*h) <= 1)
+		_error(6, line_number, NULL);
+	else
+	{
+		nxtNode = (*h)->next;
+		nxtNode->n += (*h)->n;
+		pop(h, line_number);
+	}
+
 }

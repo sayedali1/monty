@@ -62,3 +62,21 @@ int main(int ac, char **av)
 	return (0);
 }
 
+/**
+ * dlistint_len - fun that get the len of a linked list
+ * @h: pointer the the first element in the list
+ * Return: the len of the list
+ */
+
+size_t stack_len(const stack_t *h)
+{
+	const stack_t *temp = h;
+	int i;
+
+	if (h == NULL)
+		return (0);
+
+	for (i = 0; temp; i++)
+		temp = temp->next;
+	return (i);
+}

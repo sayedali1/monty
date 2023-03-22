@@ -51,5 +51,6 @@ void add(stack_t **h, unsigned int line_number);
 void _error(int exit_num, unsigned int line_number, char *av);
 void exe_opcode(stack_t **stack, char **argv, unsigned int line_number);
 void free_stack(stack_t **head);
+size_t stack_len(const stack_t *h);
 
 #endif
