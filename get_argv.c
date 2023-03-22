@@ -10,18 +10,18 @@ void check_begin_space(char **line)
 	char *newline = NULL;
 	unsigned int spaces = 0, i;
 
-	newline = malloc(sizeof(char) * strlen(*line));
+	newline = malloc(sizeof(char) * (strlen(*line) + 1));
 	strcpy(newline, *line);
 
 	for (i = 0; newline[i] == ' '; i++)
 		;
-
+	
 	spaces = strlen(newline) - i;
+	
 	*line = malloc(sizeof(char) * (spaces + 1));
 	if (*line == NULL)
 		_error(3, 0, NULL);
-	if (*line == NULL)
-		return;
+	
 	strcpy(*line, &newline[i]);
 
 	free(newline);
@@ -40,7 +40,10 @@ char **get_argv(char *line, char *seprator)
 	int lines = 0, i;
 	/* check for spaces in the begining of a line */
 	check_begin_space(&line);
-	cpline = malloc(strlen(line) + 1);
+	if (strlen(line) == 0)
+		return (NULL);
+
+	cpline = malloc(sizeof(char) * (strlen(line) + 1));
 	if (cpline == NULL)
 		_error(3, 0, NULL);
 	strcpy(cpline, line); /* calc how many strings to allcate it  */

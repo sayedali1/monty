@@ -42,7 +42,7 @@ void push(char *argv, stack_t **head, unsigned int line_number)
 
 	if (digits_only(argv) == 0)
 	{
-		_error(4, line_number, NULL);
+		_error(8, line_number, NULL);
 	}
 	newNode->n = atoi(argv); /* fill the new node with elements */
 	newNode->prev = NULL; /* make the perv points to null */

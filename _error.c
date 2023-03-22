@@ -14,23 +14,26 @@ void _error(int exit_num, unsigned int line_number, char *av)
 		fprintf(stderr, "USAGE: monty file\n");
 		break;
 	case 2:
-		fprintf(stderr, "L %d: can't pint, stack empty\n", line_number);
+		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
 		break;
 	case 3:
 		fprintf(stderr, "Error: malloc failed\n");
 		break;
 	case 4:
-		fprintf(stderr, "L %d: can't pop an empty stack\n", line_number);
+		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
 		break;
 	case 5:
-		fprintf(stderr, "L %d: can't swap, stack too short\n", line_number);
+		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
 		break;
 	case 6:
-		fprintf(stderr, "L %d: can't add, stack too short\n", line_number);
+		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
 		break;
 	case 7:
-		fprintf(stderr, "Error: Can't open file %s", av);
-		exit(EXIT_FAILURE);
+		fprintf(stderr, "Error: Can't open file %s\n", av);
+		break;
+	case 8:
+		fprintf(stderr,"L%d: usage: push integer\n",line_number);
+		break;
 	default:
 		break;
 	}

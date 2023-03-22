@@ -31,8 +31,11 @@ int main(int ac, char **av)
 			line_number++; /* count the num of lines */
 			if (line[strlen(line) - 1] == '\n') /* delete the extra element */
 				line[strlen(line) - 1] = '\0';
-
+			if (strlen(line) == 0)
+				continue;
 			argv = get_argv(line, " "); /* get arguments of each line */
+			if (argv == NULL)
+				continue;
 			exe_opcode(&stack, argv, line_number);
 		}
 		free(line), free(argv);
