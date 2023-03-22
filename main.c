@@ -30,9 +30,8 @@ int main(int ac, char **av)
 {
 	FILE *fd;
 	int line_number = 0;
-	char line[256];
+	char line[100000];
 	char **argv = NULL;
-
 
 	if (ac != 2) /* less than two arguments */
 		_error(1, line_number, NULL);
