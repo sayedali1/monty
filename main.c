@@ -6,16 +6,19 @@ stack_t *stack = NULL;
  * free_dlistint - fun that free linked list
  * @head: pointer to the first of the element of list
  */
-void free_stack(stack_t *head)
+void free_stack(stack_t **h)
 {
-	stack_t *temp = head;
 
-	while (temp)
+	/* return if empty list */
+	if (!h)
+		return;
+
+	while (*h && (*h)->next)
 	{
-		head = head->next;
-		free(temp);
-		temp = head;
+		*h = (*h)->next;
+		free((*h)->prev);
 	}
+	free(*h);
 }
 /**
  * main - program for monty opcode
@@ -53,7 +56,7 @@ int main(int ac, char **av)
 			exe_opcode(&stack, argv, line_number);
 		}
 		free(argv);
-		free(stack);
+		free_stack(&stack);
 		fclose(fd);
 	}
 
