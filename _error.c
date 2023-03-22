@@ -40,5 +40,6 @@ void _error(int exit_num, unsigned int line_number, char *av)
 	default:
 		break;
 	}
+	free_stack(stack);
 	exit(EXIT_FAILURE);
 }

@@ -18,7 +18,6 @@ void check_begin_space(char **line)
 	for (i = 0; newline[i] == ' '; i++)
 		;
 	spaces = strlen(newline) - i;
-
 	*line = malloc(sizeof(char) * (spaces + 1));
 	if (*line == NULL)
 		_error(3, 0, NULL);

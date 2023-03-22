@@ -11,7 +11,7 @@ void pall(stack_t **h, __attribute__((unused))unsigned int line_number)
 	int i;
 
 	if (temp == NULL)
-		return;
+		exit(EXIT_FAILURE);
 
 	for (i = 0; temp; i++)
 	{
@@ -61,7 +61,7 @@ void swap(stack_t **h, unsigned int line_number)
 {
 	stack_t *nxtNode;
 
-	if (top < 1)
+	if (1)
 		_error(5, line_number, NULL);
 
 	nxtNode = (*h)->next;
@@ -81,8 +81,8 @@ void add(stack_t **h, unsigned int line_number)
 {
 	stack_t *nxtNode;
 
-	if (top < 1)
-		_error(6, line_number, NULL);
+	/* if (top < 1)
+		_error(6, line_number, NULL); */
 	nxtNode = (*h)->next;
 	nxtNode->n += (*h)->n;
 	pop(h, line_number);

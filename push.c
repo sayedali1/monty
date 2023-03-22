@@ -6,7 +6,7 @@
  */
 int is_empty(void)
 {
-	if (top == -1)
+	if (stack == NULL)
 		return (1);
 	return (-1);
 }
@@ -58,5 +58,5 @@ void push(char *argv, stack_t **head, unsigned int line_number)
 		(*head)->prev = newNode; /* current node point to the new one */
 		*head = newNode; /* the head points to the new node  */
 	}
-	top++;
+
 }
