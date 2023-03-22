@@ -25,7 +25,21 @@ int digits_only(const char *s)
 	}
 	return (1);
 }
+int is_number(const char *n)
+{
+	int i = 0;
+
+	if (*n == '-')
+		i = 1;
+	for (; *(n + i) != '\0'; i++)
+	{
+		if (isdigit(*(n + i)) == 0)
+			return (-1);
+	}
+	return (0);
+}
 /**
+ * 
  * push - fun that push int to the stack
  * @argv: str of argv
  * @head: pointer to the head of the stack
@@ -35,6 +49,8 @@ void push(char *argv, stack_t **head, unsigned int line_number)
 {
 	stack_t *newNode = NULL;
 	int flag = 1;
+	if(!head)
+		return;
 	/* create new node */
 	newNode = malloc(sizeof(stack_t));
 	if (newNode == NULL)
@@ -45,23 +61,25 @@ void push(char *argv, stack_t **head, unsigned int line_number)
 		argv = argv + 1;
 		flag = -1;
 	}
-	if (digits_only(argv) == 0)
+	if (is_number(argv) == -1)
 	{
 		_error(8, line_number, NULL);
 	}
-	newNode->n = atoi(argv) * flag; /* fill the new node with elements */
-	newNode->prev = NULL; /* make the perv points to null */
-
-	if (is_empty() == 1)
-	{
-		*head = newNode;
-		newNode->next = NULL;
-	}
 	else
-	{
-		newNode->next = *head; /* new node points to the next node */
-		(*head)->prev = newNode; /* current node point to the new one */
-		*head = newNode; /* the head points to the new node  */
-	}
+	{	
+		newNode->n = atoi(argv) * flag; /* fill the new node with elements */
+		newNode->prev = NULL; /* make the perv points to null */
 
+		if (is_empty() == 1)
+		{
+			*head = newNode;
+			newNode->next = NULL;
+		}
+		else
+		{
+			newNode->next = *head; /* new node points to the next node */
+			(*head)->prev = newNode; /* current node point to the new one */
+			*head = newNode; /* the head points to the new node  */
+		}
+	}
 }
