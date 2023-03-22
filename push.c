@@ -34,17 +34,22 @@ int digits_only(const char *s)
 void push(char *argv, stack_t **head, unsigned int line_number)
 {
 	stack_t *newNode = NULL;
-
+	int flag = 1;
 	/* create new node */
 	newNode = malloc(sizeof(stack_t));
 	if (newNode == NULL)
 		_error(3, 0, NULL);
 
+	if (argv[0] == '-')
+	{
+		argv = argv + 1;
+		flag = -1;
+	}
 	if (digits_only(argv) == 0)
 	{
 		_error(8, line_number, NULL);
 	}
-	newNode->n = atoi(argv); /* fill the new node with elements */
+	newNode->n = atoi(argv) * flag; /* fill the new node with elements */
 	newNode->prev = NULL; /* make the perv points to null */
 
 	if (is_empty() == 1)
