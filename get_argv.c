@@ -11,17 +11,18 @@ void check_begin_space(char **line)
 	unsigned int spaces = 0, i;
 
 	newline = malloc(sizeof(char) * (strlen(*line) + 1));
-	strcpy(newline, *line);
+	if (newline == NULL)
+		_error(3, 0, NULL);
 
+	strcpy(newline, *line);
 	for (i = 0; newline[i] == ' '; i++)
 		;
-	
 	spaces = strlen(newline) - i;
-	
+
 	*line = malloc(sizeof(char) * (spaces + 1));
 	if (*line == NULL)
 		_error(3, 0, NULL);
-	
+
 	strcpy(*line, &newline[i]);
 
 	free(newline);

@@ -32,7 +32,10 @@ void _error(int exit_num, unsigned int line_number, char *av)
 		fprintf(stderr, "Error: Can't open file %s\n", av);
 		break;
 	case 8:
-		fprintf(stderr,"L%d: usage: push integer\n",line_number);
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		break;
+	case 9:
+		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, av);
 		break;
 	default:
 		break;
