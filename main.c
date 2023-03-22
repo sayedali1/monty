@@ -26,8 +26,8 @@ void free_stack(stack_t *head)
 int main(int ac, char **av)
 {
 	FILE *fd;
-	int line_number = 0, len = 1024;
-	char *line = NULL;
+	int line_number = 0;
+	char line[256];
 	char **argv = NULL;
 
 
@@ -40,11 +40,7 @@ int main(int ac, char **av)
 		_error(7, 0, av[1]);
 	else
 	{
-		line = malloc(sizeof(char) * len);
-		if (line == NULL)
-			_error(3, line_number, NULL);
-
-		while (fgets(line, len, fd) != NULL)
+		while (fgets(line, sizeof(line), fd))
 		{
 			line_number++; /* count the num of lines */
 			if (line[strlen(line) - 1] == '\n') /* delete the extra element */
@@ -56,7 +52,7 @@ int main(int ac, char **av)
 				continue;
 			exe_opcode(&stack, argv, line_number);
 		}
-		free(line), free(argv);
+		free(argv);
 		free(stack);
 		fclose(fd);
 	}
